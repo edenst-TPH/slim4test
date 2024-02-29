@@ -1,0 +1,38 @@
+%FDF-1.2
+%‚„œ”
+1 0 obj
+
+<<
+/FDF 
+<<
+/Fields [
+<<
+/T (image)
+/V /
+>> 
+<<
+/T (check_box)
+/V /Yes
+>> 
+<<
+/T (text_field_multi)
+/V (line 1\rline2)
+>> 
+<<
+/T (text_field)
+/V (single line)
+>> 
+<<
+/T (radio)
+/V /choice2
+>>]
+>>
+>>
+endobj
+
+trailer
+
+<<
+/Root 1 0 R
+>>
+%%EOF

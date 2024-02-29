@@ -1,0 +1,57 @@
+{
+    "Info": {
+        "Creator": "Adobe Acrobat Pro (64-bit) 23.6.20360",
+        "ModDate": "D:20240212102511+01'00'",
+        "CreationDate": "D:20231128102511+01'00'",
+        "Producer": "Adobe Acrobat Pro (64-bit) 23.6.20360"
+    },
+    "PdfID0": "e7f13067fc0f074785349125c3c9ea48",
+    "PdfID1": "81f07bd19b13b3499f4909eca0ee115f",
+    "NumberOfPages": "1",
+    "Bookmark": [{
+            "Title": "Blank Page",
+            "Level": "1",
+            "PageNumber": "1"
+        }
+    ],
+    "PageMedia": [{
+            "Number": "1",
+            "Rotation": "0",
+            "Rect": "0 0 612 792",
+            "Dimensions": "612 792"
+        }
+    ],
+    "Fields": [{
+            "FieldType": "Text",
+            "FieldName": "text_field",
+            "FieldFlags": "4096",
+            "FieldValue": "single line",
+            "FieldJustification": "Left"
+        }, {
+            "FieldType": "Text",
+            "FieldName": "text_field_multi",
+            "FieldFlags": "4096",
+            "FieldValue": "line 1\nline 2\nhttps://github.com/Research-IT-Swiss-TPH/pdftk-api/tree/master/docs",
+            "FieldJustification": "Left"
+        }, {
+            "FieldType": "Button",
+            "FieldName": "check_box",
+            "FieldFlags": "0",
+            "FieldValue": "Yes",
+            "FieldJustification": "Left",
+            "FieldStateOption": ["Off", "Yes"]
+        }, {
+            "FieldType": "Button",
+            "FieldName": "radio",
+            "FieldFlags": "49152",
+            "FieldValue": "green",
+            "FieldJustification": "Left",
+            "FieldStateOption": ["green", "Off", "red"]
+        }, {
+            "FieldType": "Button",
+            "FieldName": "image",
+            "FieldFlags": "65536",
+            "FieldJustification": "Left"
+        }
+    ]
+}

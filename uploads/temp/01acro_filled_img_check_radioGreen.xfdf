@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xfdf xmlns="http://ns.adobe.com/xfdf/" xml:space="preserve"
+><f href="../../02free_filled_img.pdf"
+/><fields
+><field name="check_box"
+><value
+>Yes</value
+></field
+><field name="radio"
+><value
+>green</value
+></field
+><field name="text_field"
+><value
+>single line</value
+></field
+><field name="text_field_multi"
+><value
+>line 1
+line 2
+https://github.com/Research-IT-Swiss-TPH/pdftk-api/tree/master/docs</value
+></field
+></fields
+><ids original="E7F13067FC0F074785349125C3C9EA48" modified="8A67B9E38A0F764388DD9122C87B49CE"
+/></xfdf
+>
