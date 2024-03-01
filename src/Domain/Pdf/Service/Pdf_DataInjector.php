@@ -9,6 +9,11 @@ use App\Domain\Pdf\Service\Pdf_PathFinder;
 
 /**
  * Service.
+ * @todo:
+    * eval given token for pdf form
+    * handle posted data: validate, extract reords
+    * multiple records in data: tell, iterate, number output pdfs and collect in a zip
+    * create dload link / dload handler for user 
  */
 final class Pdf_DataInjector
 {
@@ -30,32 +35,51 @@ final class Pdf_DataInjector
         // return $data; # !!test
 
         $aPaths = $this->Pdf_PathFinder->findPaths($idDoc);
-        $uploadPath = $aPaths['uploadPath']; # where we expect the uploaded pdf to process
-        $outPath = $aPaths['outPath']; # where we expect the uploaded pdf to process
+        $uploadPath = $aPaths['uploadPath']; # where we expect the uploaded pdf-form to process
+        $outPath = $aPaths['outPath']; # where we store the output pdfs (filled & flattened)
         $docFile = $aPaths['docFile'];
-        $outFile = str_replace('.pdf','_flat.pdf',$docFile); #@todo sequence nr if multiple records / output pdfs
+        // $outFile = str_replace('.pdf','_flat.pdf',$docFile); #@todo sequence nr if multiple records / output pdfs
 
-        $data = [ #@todo from request!!
-            'text_field' => 'text_field',
-            'text_field_multi' => 'line1\nline2',
-            'check_box' => 'Yes',
-            'readio' => 'red',
-            // 'edtBirthday' => '16.9.1961' #no value provided, so skip
-        ];
+        #@todo data from restful PUT request!
+        $data = 
+        [
+            [
+                'text_field' => 'r1-text_field',
+                'text_field_multi' => 'r1-line1\nline2',
+                'check_box' => 'Yes',  # checked
+                'readio' => 'green', # @todo does not work 
+            ],
+            [
+                'text_field' => 'r2-text_field',
+                'text_field_multi' => 'r2-line1\nline2',
+                'check_box' => 'Off', # unchecked
+                'readio' => 'red',
+            ]
+        ]
+        ;
 
-        $pdf = new Pdf($uploadPath.$docFile); # need new php-pdftk instance foreach call
-        $result = $pdf->fillForm($data)
-        ->needAppearances()
-        ->flatten()
-        ->saveAs($outPath.$outFile);
+        if(!$this->isIndexed($data)) { $data = [$data]; } # wrap single (assoc) array in indexed array
 
-        # Always check for errors
-        if ($result === false) {
-	        $error = $pdf->getError();
-	        return 'error: <br/>'.print_r($error,1);
+        foreach($data as $k => $v) {
+            $pdf = new Pdf($uploadPath.$docFile); # need new php-pdftk instance foreach call
+            $outFile = str_replace('.pdf', '_flat_'.$k.'.pdf', $docFile); # ..flat_0, flat_1 ..
+            $result = $pdf->fillForm($v)
+            ->needAppearances()
+            ->flatten()
+            ->saveAs($outPath.$outFile); #@todo store multiple output pdfs in a zip
+            # Always check for errors
+            if ($result === false) {
+                $error = $pdf->getError();
+                return 'error: <br/>'.print_r($error,1);
+            }
         }
-
-        return $outFile;
-
+        return $outFile; #@todo zip-arch if multiple
+    }
+    /*
+    tell if given array is indexed (NOT associative)
+    */
+    private function isIndexed(array $aa): bool {
+        $keys = array_keys($aa);
+        return ($keys === range(0, count($aa)-1));
     }
 }
